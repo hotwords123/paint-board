@@ -1,0 +1,79 @@
+<%
+    locals.title = '画板';
+    locals.active = 'board';
+%>
+
+<%- include('header') %>
+
+<style type="text/css">
+    .shadowed-box {
+        box-shadow: 0 0 8px #999;
+        transition: box-shadow linear .2s 0s;
+    }
+    .shadowed-box:hover {
+        box-shadow: 0 0 16px #999;
+    }
+    .board-box {
+        height: 480px;
+        background-color: #f3fcff;
+        overflow: hidden;
+    }
+    #board {
+        position: relative;
+        transform-origin: 0 0 0;
+        image-rendering: pixelated;
+        box-shadow: 0 0 40px #999;
+    }
+    #board.dragging {
+        cursor: move;
+    }
+    .btn-color {
+        display: inline-block;
+        margin: .45em .3em;
+        width: 1.4em;
+        height: 1.4em;
+        border: 1px solid #999;
+        border-radius: .7em;
+        cursor: pointer;
+        transition: all linear .1s 0s;
+    }
+    .btn-color:hover {
+        transform: scale(1.1);
+    }
+    .btn-color.active {
+        transform: scale(1.2) !important;
+        border: 2px solid #2185d0 !important;
+    }
+</style>
+
+<h2 class="ui grey center aligned header" style="margin-bottom: 1em;">画板</h2>
+<div class="ui grid">
+    <div class="row">
+        <div class="ten wide column">
+            <div class="board-box shadowed-box">
+                <canvas id="board">Oops... Your browser is out of date!</canvas>
+            </div>
+        </div>
+        <div class="six wide column">
+            <div class="shadowed-box">
+                <div class="ui top attached block header">颜色</div>
+                <div class="ui attached segment color-buttons">
+                    <% server.config.colors.forEach((color, i) => { %>
+                        <span class="btn-color" data-id="<%= i %>" title="#<%= color %>" style="background-color: #<%= color %>;"></span>
+                    <% }) %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="/js/socket.io.js"></script>
+<script type="text/javascript">
+    var boardW = <%- server.config.board.width %>;
+    var boardH = <%- server.config.board.height %>;
+    var colorStr = <%- JSON.stringify(server.config.colors) %>;
+    var bg_color = <%- server.config.bg_color %>;
+</script>
+<script type="text/javascript" src="/js/paint-board.js"></script>
+
+<%- include('footer') %>

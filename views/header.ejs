@@ -1,0 +1,31 @@
+<%
+    if (!locals.title) locals.title = bldcd.config.title;
+    if (!locals.active) locals.active = '';
+%>
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title><%= title %> - <%= server.config.title %></title>
+    <link rel="stylesheet" href="/css/semantic-ui/semantic.min.css" type="text/css">
+    <link rel="stylesheet" href="/css/main.css" type="text/css">
+    <script src="/js/jquery.min.js" type="text/javascript"></script>
+    <script src="/js/semantic-ui/semantic.min.js" type="text/javascript"></script>
+</head>
+<body>
+    <div class="ui fixed borderless menu" style="position: fixed;">
+        <div class="ui container">
+            <a class="header item" href="/" style="font-size: 1.25em; font-weight: 300;"><%= server.config.title %></a>
+            <a class="item<% if (active.startsWith('index')) { %> active<% } %>" href="/">
+                <i class="home icon"></i> 首页
+            </a>
+            <a class="item<% if (active.startsWith('board')) { %> active<% } %>" href="/board">
+                <i class="paint brush icon"></i> 画板
+            </a>
+        </div>
+    </div>
+    <div class="ui main container">
+        <div class="ui padding">
+            <div class="ui global error message" style="display: none;"></div>

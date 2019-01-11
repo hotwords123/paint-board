@@ -1,0 +1,23 @@
+{
+    "base:not_found": {
+        "message": "这里是空der...",
+        "code": 404
+    },
+    "base:unknown_error": {
+        "message": "未知错误",
+        "code": 500
+    },
+    "base:internal_server_error": {
+        "message": "服务器错误",
+        "code": 500
+    },
+    "base:parameter_error": {
+        "message": "参数错误"
+    },
+    "paint:out_of_board": {
+        "message": "不能画到画板外面去"
+    },
+    "get_chunk:chunk_too_big": {
+        "message": "区域太大"
+    }
+}

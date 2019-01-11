@@ -1,0 +1,20 @@
+<%
+    locals.title = '错误';
+    locals.active = 'error';
+%>
+
+<%- include('header') %>
+
+<% if (err.id !== 'base:internal_server_error') { %>
+    <div class="ui icon warning message">
+        <i class="idea sign icon"></i>
+        <div class="content">
+            <div class="header"><%= err.message %></div>
+            <p><%= ctx.method %>&nbsp;<%= ctx.url %></p>
+        </div>
+    </div>
+<% } else { %>
+    <pre><code><%= err.stack %></code></pre>
+<% } %>
+
+<%- include('footer') %>
